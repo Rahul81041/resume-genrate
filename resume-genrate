@@ -1,0 +1,44 @@
+from fpdf import FPDF
+
+class Resume(FPDF):
+    def __init__(self):
+        super().__init__()
+        self.add_page()
+
+    def header(self):
+        self.set_font("Arial", style="U", size=24)
+        self.cell(190, 10, txt="Your Name", ln=1, align="C")
+        self.set_font("Arial", size=14)
+        self.cell(190, 10, txt="Your Address", ln=1, align="C")
+        self.cell(190, 10, txt="Your Email", ln=1, align="C")
+        self.cell(190, 10, txt="Your Phone Number", ln=1, align="C")
+        self.ln(20)
+
+    def education(self):
+        self.set_font("Arial", style="U", size=18)
+        self.cell(190, 10, txt="Education", ln=1, align="L")
+        self.set_font("Arial", size=14)
+        self.cell(190, 10, txt="Degree, Major, University, Year", ln=1, align="L")
+        self.ln(10)
+
+    def work_experience(self):
+        self.set_font("Arial", style="U", size=18)
+        self.cell(190, 10, txt="Work Experience", ln=1, align="L")
+        self.set_font("Arial", size=14)
+        self.cell(190, 10, txt="Job Title, Company, Dates", ln=1, align="L")
+        self.ln(10)
+
+    def skills(self):
+        self.set_font("Arial", style="U", size=18)
+        self.cell(190, 10, txt="Skills", ln=1, align="L")
+        self.set_font("Arial", size=14)
+        self.cell(190, 10, txt="List of skills separated by commas", ln=1, align="L")
+        self.ln(10)
+
+if __name__ == "__main__":
+    pdf = Resume()
+    pdf.header()
+    pdf.education()
+    pdf.work_experience()
+    pdf.skills()
+    pdf.output("resume.pdf", "F")
